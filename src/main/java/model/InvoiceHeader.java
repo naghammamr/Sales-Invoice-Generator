@@ -7,7 +7,7 @@ public class InvoiceHeader {
     private int invoiceNum; // PK (1:M)
     private String invoiceDate;
     private String customerName;
-    private ArrayList<InvoiceLine> InvoiceLines;
+    private ArrayList<InvoiceLine> InvoiceItems;
 
     public InvoiceHeader() {
     }
@@ -42,20 +42,20 @@ public class InvoiceHeader {
         this.customerName = customerName;
     }
 
-    public ArrayList<InvoiceLine> getInvoiceLines() {
+    public ArrayList<InvoiceLine> getInvoiceItems() {
 
-        if (InvoiceLines == null) 
+        if (InvoiceItems == null) 
         {
-            InvoiceLines = new ArrayList<>();
+            InvoiceItems = new ArrayList<>();
         }
-        return InvoiceLines;
+        return InvoiceItems;
     }
 
     // to calculate the total of the invoice per line
     // (item price * total) --> getItemTotal(); from invoice line class model
     public double getInvoiceTotal() {
         double invoiceTotal = 0.0;
-        for (InvoiceLine l : getInvoiceLines()) {
+        for (InvoiceLine l : getInvoiceItems()) {
             invoiceTotal += l.getItemTotal();
         }
         return invoiceTotal;

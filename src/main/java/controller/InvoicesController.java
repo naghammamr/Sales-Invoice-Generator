@@ -150,7 +150,7 @@ public class InvoicesController implements ActionListener, ListSelectionListener
                             }
 
                             InvoiceLine line = new InvoiceLine(itemInvoiceNumber, itemName, itemPrice, count);
-                            itemInvoiceNumber.getInvoiceLines().add(line);
+                            itemInvoiceNumber.getInvoiceItems().add(line);
                         } 
                         catch (Exception ex) 
                         {
@@ -192,7 +192,7 @@ public class InvoicesController implements ActionListener, ListSelectionListener
             mainFrame.getCustomerName().setText(currentInvoice.getCustomerName());
             mainFrame.getInvoiceTotal().setText("" + currentInvoice.getInvoiceTotal());// "" + is added because invoice number is double, so just make it string.
 
-            LinesTable_TableModel linestblModel = new LinesTable_TableModel(currentInvoice.getInvoiceLines());
+            LinesTable_TableModel linestblModel = new LinesTable_TableModel(currentInvoice.getInvoiceItems());
             
             mainFrame.getItemsTable().setModel(linestblModel);
             linestblModel.fireTableDataChanged(); //update the table
@@ -280,7 +280,7 @@ public class InvoicesController implements ActionListener, ListSelectionListener
             InvoiceHeader invoiceNumber = mainFrame.getInvoicesArray().get(selectedInvoiceNumber);
 
             InvoiceLine invLine = new InvoiceLine(invoiceNumber, newItemName, newItemPrice, newItemCount);
-            invoiceNumber.getInvoiceLines().add(invLine);
+            invoiceNumber.getInvoiceItems().add(invLine);
 
             LinesTable_TableModel itemTblModel = (LinesTable_TableModel) mainFrame.getItemsTable().getModel(); //casting
             itemTblModel.fireTableDataChanged(); //to update the table.
@@ -303,20 +303,20 @@ public class InvoicesController implements ActionListener, ListSelectionListener
     private void deleteInvoiceItem() {
         
         int selectedInvoice = mainFrame.getInvoicesTable().getSelectedRow();// get the selected invoice index.
-        int selectedRow = mainFrame.getItemsTable().getSelectedRow(); // get selected row index.
+        int selectedItem = mainFrame.getItemsTable().getSelectedRow(); // get selected row index.
 
-        if (selectedInvoice != 1 && selectedRow != -1) 
+        if (selectedInvoice != -1 && selectedItem != -1) 
         {
             InvoiceHeader invoice = mainFrame.getInvoicesArray().get(selectedInvoice);
-            invoice.getInvoiceLines().remove(selectedRow);
+            invoice.getInvoiceItems().remove(selectedItem); //delete selected item
 
-            LinesTable_TableModel lineTblModel = new LinesTable_TableModel(invoice.getInvoiceLines());
+            LinesTable_TableModel lineTblModel = new LinesTable_TableModel(invoice.getInvoiceItems());
+            
             mainFrame.getItemsTable().setModel(lineTblModel);
             lineTblModel.fireTableDataChanged(); //update the table.
             
             //Update total invoice after deleting item
-            InvoiceHeader currentInvoice = mainFrame.getInvoicesArray().get(selectedInvoice);
-            mainFrame.getInvoiceTotal().setText("" + currentInvoice.getInvoiceTotal());// "" + is added because invoice number is double, so just make it string.        
+            mainFrame.getInvoiceTotal().setText("" + invoice.getInvoiceTotal());// "" + is added because invoice number is double, so just make it string.        
             mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the invoice total
             // end 
         }
@@ -337,7 +337,7 @@ public class InvoicesController implements ActionListener, ListSelectionListener
             invoiceHeader += convertedInvoices; // add new invoice
             invoiceHeader += "\n"; //add new line in the invoice header
 
-            for (InvoiceLine invLine : invoice.getInvoiceLines()) 
+            for (InvoiceLine invLine : invoice.getInvoiceItems()) 
             {
                 String convertedInvoiceLines = invLine.convertInvoiceItemToCSV();
 

@@ -21,21 +21,21 @@ public class ItemDialogPopup extends JDialog {
     private final JButton saveItemBtn;
     private JButton cancelsavingItemBtn;
 
-    public ItemDialogPopup(InvoiceFrame frame) {
+    public ItemDialogPopup(InvoiceFrame mainFrame) {
 
         // Dialog settings
         setLayout(new GridLayout(4, 2));
         setTitle("New Invoice Item");
-        setLocation(250, 350);
+        setLocation(350, 250);
 
         itemNameLabel = new JLabel("Item Name");
-        itemNameTxtField = new JTextField(128);
+        itemNameTxtField = new JTextField(20);
 
         itemPriceLabel = new JLabel("Item's Price");
-        itemPriceTxtField = new JTextField(10);
+        itemPriceTxtField = new JTextField(20);
 
         itemCountLabel = new JLabel("Item's Count");
-        itemCountTxtField = new JTextField(10);
+        itemCountTxtField = new JTextField(20);
 
         saveItemBtn = new JButton("Save");
         saveItemBtn.setActionCommand("saveNewInvoiceItem");
@@ -43,8 +43,8 @@ public class ItemDialogPopup extends JDialog {
         cancelsavingItemBtn = new JButton("Cancel");
         cancelsavingItemBtn.setActionCommand("cancelSavingInvoiceItem");
 
-        saveItemBtn.addActionListener(frame.getController());
-        cancelsavingItemBtn.addActionListener(frame.getController());
+        saveItemBtn.addActionListener(mainFrame.getController());
+        cancelsavingItemBtn.addActionListener(mainFrame.getController());
 
         add(itemNameLabel);
         add(itemNameTxtField);

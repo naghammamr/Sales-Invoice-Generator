@@ -17,16 +17,15 @@ public class InvoiceDialogPopup extends JDialog {
     private final JButton saveInvoiceBtn;
     private final JButton cancelInvSavingBtn;
 
-    public InvoiceDialogPopup(InvoiceFrame frame) {
+    public InvoiceDialogPopup(InvoiceFrame mainFrame) {
 
         setLayout(new GridLayout(3, 2));
         setTitle("New Invoice");
-        setLocation(250, 350);
-        //setSize(new Dimension(100, 100));
-        //setLocationRelativeTo(frame);
+        setLocation(350, 250);
+        //setLocationRelativeTo(mainFrame);
 
         customerNameFieldLabel = new JLabel("Customer Name: ");
-        customerNameTxtField = new JTextField(45);
+        customerNameTxtField = new JTextField(20);
 
         invoiceDateFieldLabel = new JLabel("Invoice Date: ");
         invoiceDateTxtField = new JTextField(10); // DD-MM-YYYY
@@ -37,8 +36,8 @@ public class InvoiceDialogPopup extends JDialog {
         cancelInvSavingBtn = new JButton("Cancel");
         cancelInvSavingBtn.setActionCommand("cancelSavingNewInvoice");
 
-        saveInvoiceBtn.addActionListener(frame.getController());
-        cancelInvSavingBtn.addActionListener(frame.getController());
+        saveInvoiceBtn.addActionListener(mainFrame.getController());
+        cancelInvSavingBtn.addActionListener(mainFrame.getController());
 
         add(customerNameFieldLabel);
         add(customerNameTxtField);
