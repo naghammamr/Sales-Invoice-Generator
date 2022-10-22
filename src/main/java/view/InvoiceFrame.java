@@ -24,14 +24,14 @@ public class InvoiceFrame extends javax.swing.JFrame {
     }
 
     // Invoices Header - Start
-    private ArrayList<InvoiceHeader> invoices;
+    private ArrayList<InvoiceHeader> invoicesArray;
 
-    public ArrayList<InvoiceHeader> getInvoices() {
-        return invoices;
+    public ArrayList<InvoiceHeader> getInvoicesArray() {
+        return invoicesArray;
     }
 
-    public void setInvoices(ArrayList<InvoiceHeader> invoices) {
-        this.invoices = invoices;
+    public void setInvoicesArray(ArrayList<InvoiceHeader> invArray) {
+        this.invoicesArray = invArray;
     }
     // Invoices Header - End
 
@@ -303,8 +303,10 @@ public class InvoiceFrame extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
+            {
+                if ("Nimbus".equals(info.getName())) 
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -321,7 +323,8 @@ public class InvoiceFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
             public void run() {
                 new InvoiceFrame().setVisible(true);
             }
@@ -399,7 +402,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
     public int getNewInvoiceNumber() {
 
         int invoiceNumber = 0;
-        for (InvoiceHeader invoice : invoices) {
+        for (InvoiceHeader invoice : invoicesArray) {
             if (invoice.getInvoiceNum() > invoiceNumber) {
                 invoiceNumber = invoice.getInvoiceNum();
             }

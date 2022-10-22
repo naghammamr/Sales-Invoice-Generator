@@ -59,5 +59,4 @@ public class InvoiceDialogPopup extends JDialog {
     public JTextField getInvoiceDateTxtField() {
         return invoiceDateTxtField; // to use it in the controller to get the entered text in the text field.
     }
-
 }
