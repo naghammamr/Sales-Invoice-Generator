@@ -247,27 +247,30 @@ public class InvoicesController implements ActionListener, ListSelectionListener
     // Delete invoice from the invoices table
     // Delete invoice button
     private void deleteInvoice() {
-
         int selectedInvoice = mainFrame.getInvoicesTable().getSelectedRow(); // get selected row index.
 
         if (selectedInvoice != -1) 
         {
             mainFrame.getInvoicesArray().remove(selectedInvoice);
             mainFrame.getInvoicesTblModel().fireTableDataChanged();// to update the table after the change
+
+            // remove invoice details and total after deleting it - start
+            mainFrame.getInvoiceNumber().setText("");
+            mainFrame.getInvoiceDate().setText("");
+            mainFrame.getCustomerName().setText("");
+            mainFrame.getInvoiceTotal().setText("");
+            // remove invoice details and total after deleting it - end
         }
     }
 
     // open dialog to save a new item in a saved invoice.
     //Add Item Button
     private void addNewInvoiceItem() {
-
         newItemPopup = new ItemDialogPopup(mainFrame);
         newItemPopup.setVisible(true);
-
     }
 
     private void saveNewInvoiceItem() {
-
         // to make sure that the user is selecting an invoice.
         String newItemName = newItemPopup.getNewItemNameTxt().getText();
         double newItemPrice = Double.parseDouble(newItemPopup.getNewItemPriceTxt().getText());
