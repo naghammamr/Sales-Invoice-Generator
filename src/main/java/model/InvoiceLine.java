@@ -4,17 +4,18 @@ public class InvoiceLine {
 
     private InvoiceHeader invoice;// M:1 (FK)
     private String itemName;
-    private double itemprice;
+    private double itemPrice;
     private int count;
 
     public InvoiceLine() {
     }
 
-    public InvoiceLine(InvoiceHeader invoice, String itemName, double itemprice, int count) {
-        this.itemName = itemName;
-        this.itemprice = itemprice;
-        this.count = count;
+    public InvoiceLine(InvoiceHeader invoice, String itemName, double itemprice, int count) 
+    {
         this.invoice = invoice;
+        this.itemName = itemName;
+        this.itemPrice = itemprice;
+        this.count = count;
     }
 
     public InvoiceHeader getInvoice() {
@@ -25,16 +26,17 @@ public class InvoiceLine {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
+    public void setItemName(String itemName) 
+    {
         this.itemName = itemName;
     }
 
-    public double getItemprice() {
-        return itemprice;
+    public double getItemPrice() {
+        return itemPrice;
     }
 
-    public void setItemprice(double itemprice) {
-        this.itemprice = itemprice;
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public int getCount() {
@@ -44,4 +46,20 @@ public class InvoiceLine {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public double getItemTotal() {
+        return itemPrice * count;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceLine{" + "invoiceNumber=" + invoice.getInvoiceNum() + ", itemName=" + itemName + ", itemprice=" + itemPrice + ", count=" + count + '}';
+    }
+
+    // will be used to save file
+    public String convertInvoiceItemToCSV() {
+        return invoice.getInvoiceNum() + "," + itemName + "," + itemPrice + "," + count;
+
+    }
+
 }

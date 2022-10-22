@@ -41,4 +41,34 @@ public class InvoiceHeader {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
+    public ArrayList<InvoiceLine> getInvoiceLines() {
+
+        if (InvoiceLines == null) 
+        {
+            InvoiceLines = new ArrayList<>();
+        }
+        return InvoiceLines;
+    }
+
+    // to calculate the total of the invoice per line
+    // (item price * total) --> getItemTotal(); from invoice line class model
+    public double getInvoiceTotal() {
+        double invoiceTotal = 0.0;
+        for (InvoiceLine l : getInvoiceLines()) {
+            invoiceTotal += l.getItemTotal();
+        }
+        return invoiceTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceHeader{" + "invoiceNumber=" + invoiceNum + ", invoiceDate=" + invoiceDate + ", customerName=" + customerName + '}';
+    }
+
+    // will be used to save file
+    public String convertInvoiceToCSV() {
+        return invoiceNum + "," + invoiceDate + "," + customerName;
+    }
+
 }

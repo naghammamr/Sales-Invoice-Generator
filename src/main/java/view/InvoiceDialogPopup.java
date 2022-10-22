@@ -8,21 +8,22 @@ import javax.swing.JTextField;
 
 public class InvoiceDialogPopup extends JDialog {
 
-    private JLabel customerNameFieldLabel;
+    private final JLabel customerNameFieldLabel;
     private JTextField customerNameTxtField;
 
-    private JLabel invoiceDateFieldLabel;
+    private final JLabel invoiceDateFieldLabel;
     private JTextField invoiceDateTxtField;
 
-    private JButton saveInvoiceBtn;
-    private JButton cancelInvSavingBtn;
+    private final JButton saveInvoiceBtn;
+    private final JButton cancelInvSavingBtn;
 
     public InvoiceDialogPopup(InvoiceFrame frame) {
 
         setLayout(new GridLayout(3, 2));
         setTitle("New Invoice");
-        setSize(100, 400);
-        setLocation(150, 100);
+        setLocation(250, 350);
+        //setSize(new Dimension(100, 100));
+        //setLocationRelativeTo(frame);
 
         customerNameFieldLabel = new JLabel("Customer Name: ");
         customerNameTxtField = new JTextField(45);
@@ -51,5 +52,12 @@ public class InvoiceDialogPopup extends JDialog {
         pack();
     }
 
+    public JTextField getCustomerNameTxtField() {
+        return customerNameTxtField; // to use it in the controller to get the entered text in the text field.
+    }
+
+    public JTextField getInvoiceDateTxtField() {
+        return invoiceDateTxtField; // to use it in the controller to get the entered text in the text field.
+    }
 
 }

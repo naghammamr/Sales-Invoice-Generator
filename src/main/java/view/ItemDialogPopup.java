@@ -8,16 +8,17 @@ import javax.swing.JTextField;
 
 public class ItemDialogPopup extends JDialog {
 
-    private JLabel itemNameLabel;
+    //{"No.", "Item Name", "Item Price", "Count", "Item Total"}; 
+    private final JLabel itemNameLabel;
     private JTextField itemNameTxtField;
 
-    private JLabel itemPriceLabel;
+    private final JLabel itemPriceLabel;
     private JTextField itemPriceTxtField;
 
-    private JLabel itemCountLabel;
+    private final JLabel itemCountLabel;
     private JTextField itemCountTxtField;
 
-    private JButton saveItemBtn;
+    private final JButton saveItemBtn;
     private JButton cancelsavingItemBtn;
 
     public ItemDialogPopup(InvoiceFrame frame) {
@@ -25,8 +26,7 @@ public class ItemDialogPopup extends JDialog {
         // Dialog settings
         setLayout(new GridLayout(4, 2));
         setTitle("New Invoice Item");
-        //setSize(1, 1);
-        setLocation(120, 200);
+        setLocation(250, 350);
 
         itemNameLabel = new JLabel("Item Name");
         itemNameTxtField = new JTextField(128);
@@ -61,4 +61,15 @@ public class ItemDialogPopup extends JDialog {
         pack();
     }
 
+    public JTextField getNewItemNameTxt() {
+        return itemNameTxtField;
+    }
+
+    public JTextField getNewItemPriceTxt() {
+        return itemPriceTxtField;
+    }
+
+    public JTextField getNewItemCountTxt() {
+        return itemCountTxtField;
+    }
 }

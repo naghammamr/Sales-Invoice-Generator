@@ -21,6 +21,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="loadFileMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Load File"/>
+                <Property name="toolTipText" type="java.lang.String" value="load invoices file"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadFileMenuItemActionPerformed"/>
@@ -32,6 +33,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="saveFileMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save File"/>
+                <Property name="toolTipText" type="java.lang.String" value="Save current invoices"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="saveFileMenuItem.addActionListener(controller);  "/>
@@ -126,6 +128,7 @@
         <Component class="javax.swing.JButton" name="newInvoiceBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Create New Invoice"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click after uploading the invoices"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newInvoiceBtnActionPerformed"/>
@@ -137,6 +140,7 @@
         <Component class="javax.swing.JButton" name="deleteInvoicesBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Invoice"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click after uploading the invoices"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="deleteInvoicesBtn.addActionListener(controller);&#xd;&#xa; "/>
@@ -371,6 +375,7 @@
         <Component class="javax.swing.JButton" name="saveInvoicesItemsBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add New Item"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click after selecting the invoice"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveInvoicesItemsBtnActionPerformed"/>
@@ -382,6 +387,7 @@
         <Component class="javax.swing.JButton" name="cancelInvoiceItemBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Item"/>
+            <Property name="toolTipText" type="java.lang.String" value="select item first"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelInvoiceItemBtnActionPerformed"/>

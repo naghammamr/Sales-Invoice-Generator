@@ -1,8 +1,11 @@
 package view;
 
+import java.util.ArrayList;
 import controller.InvoicesController;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import model.InvoiceHeader;
+import model.InvoicesTable_TableModel;
 
 /**
  *
@@ -20,6 +23,17 @@ public class InvoiceFrame extends javax.swing.JFrame {
         return controller;
     }
 
+    // Invoices Header - Start
+    private ArrayList<InvoiceHeader> invoices;
+
+    public ArrayList<InvoiceHeader> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(ArrayList<InvoiceHeader> invoices) {
+        this.invoices = invoices;
+    }
+    // Invoices Header - End
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -66,6 +80,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
         newInvoiceBtn.setText("Create New Invoice");
+        newInvoiceBtn.setToolTipText("Click after uploading the invoices");
         newInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newInvoiceBtnActionPerformed(evt);
@@ -73,6 +88,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         });
 
         deleteInvoicesBtn.setText("Delete Invoice");
+        deleteInvoicesBtn.setToolTipText("Click after uploading the invoices");
 
         leftInvoicesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,7 +139,10 @@ public class InvoiceFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanelLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 570));
 
+        jPanelRight.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
         ItemsTable.setAutoCreateRowSorter(true);
+        ItemsTable.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         ItemsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -155,6 +174,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         invoicesItemTableHeader.setText("Invoices Items");
 
         saveInvoicesItemsBtn.setText("Add New Item");
+        saveInvoicesItemsBtn.setToolTipText("Click after selecting the invoice");
         saveInvoicesItemsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveInvoicesItemsBtnActionPerformed(evt);
@@ -162,6 +182,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         });
 
         cancelInvoiceItemBtn.setText("Delete Item");
+        cancelInvoiceItemBtn.setToolTipText("select item first");
         cancelInvoiceItemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelInvoiceItemBtnActionPerformed(evt);
@@ -240,9 +261,12 @@ public class InvoiceFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanelRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 510, 570));
 
+        jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+
         fileMenu.setText("File");
 
         loadFileMenuItem.setText("Load File");
+        loadFileMenuItem.setToolTipText("load invoices file");
         loadFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadFileMenuItemActionPerformed(evt);
@@ -251,6 +275,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         fileMenu.add(loadFileMenuItem);
 
         saveFileMenuItem.setText("Save File");
+        saveFileMenuItem.setToolTipText("Save current invoices");
         fileMenu.add(saveFileMenuItem);
 
         jMenuBar1.add(fileMenu);
@@ -294,7 +319,6 @@ public class InvoiceFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(InvoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -332,6 +356,18 @@ public class InvoiceFrame extends javax.swing.JFrame {
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 
+    // Table Model - Start
+    private InvoicesTable_TableModel invoicesTblModel;//table model to display uploaded file data in the table.
+
+    public InvoicesTable_TableModel getInvoicesTblModel() {
+        return invoicesTblModel;
+    }
+
+    public void setInvoicesTblModel(InvoicesTable_TableModel invoicesTblModel) {
+        this.invoicesTblModel = invoicesTblModel;
+    }
+    // Table Model - End
+
     //Invoices Table getter method
     public JTable getInvoicesTable() {
         return leftInvoicesTable;
@@ -360,4 +396,15 @@ public class InvoiceFrame extends javax.swing.JFrame {
     }
     //Invoices Table 4 Labels getter methods - End
 
+    public int getNewInvoiceNumber() {
+
+        int invoiceNumber = 0;
+        for (InvoiceHeader invoice : invoices) {
+            if (invoice.getInvoiceNum() > invoiceNumber) {
+                invoiceNumber = invoice.getInvoiceNum();
+            }
+        }
+
+        return ++invoiceNumber;
+    }
 }

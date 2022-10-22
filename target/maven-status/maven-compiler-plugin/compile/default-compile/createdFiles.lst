@@ -1,3 +1,13 @@
 model\LinesTable_TableModel.class
+view\InvoiceFrame$2.class
+view\InvoiceFrame$3.class
+controller\InvoicesController.class
+view\InvoiceDialogPopup.class
+view\InvoiceFrame$4.class
 model\InvoiceHeader.class
+view\InvoiceFrame$1.class
 model\InvoiceLine.class
+view\InvoiceFrame$5.class
+view\InvoiceFrame.class
+model\InvoicesTable_TableModel.class
+view\ItemDialogPopup.class
