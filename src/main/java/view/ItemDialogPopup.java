@@ -61,15 +61,15 @@ public class ItemDialogPopup extends JDialog {
         pack();
     }
 
-    public JTextField getNewItemNameTxt() {
+    public JTextField getNewItemNameText() {
         return itemNameTxtField;
     }
 
-    public JTextField getNewItemPriceTxt() {
+    public JTextField getNewItemPriceText() {
         return itemPriceTxtField;
     }
 
-    public JTextField getNewItemCountTxt() {
+    public JTextField getNewItemCountText() {
         return itemCountTxtField;
     }
 }

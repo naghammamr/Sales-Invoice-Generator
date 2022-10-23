@@ -211,23 +211,37 @@ public class InvoicesController implements ActionListener, ListSelectionListener
     private void saveNewInvoice() {
 
         int newInvoiceNumber = mainFrame.getNewInvoiceNumber();
-        String newInvoiceCustomerName = newInvoicePopup.getCustomerNameTxtField().getText(); //Get Entered customer name
-        String newInvoiceDate = newInvoicePopup.getInvoiceDateTxtField().getText(); // Get entered date
+        String newInvoiceCustomerName = newInvoicePopup.getCustomerNameText().getText(); //Get Entered customer name
+        String newInvoiceDate = newInvoicePopup.getInvoiceDateText().getText(); // Get entered date
 
         DateFormat dateValidaiton = new SimpleDateFormat("DD-MM-YYYY"); // date validation
 
         try 
         {
-            dateValidaiton.parse(newInvoiceDate);
+            if(!(newInvoiceCustomerName.isEmpty()))
+            {
+                if(newInvoiceCustomerName.length() <= 20 && newInvoiceCustomerName.length() >= 3 )
+                {
+                    dateValidaiton.parse(newInvoiceDate);
 
-            InvoiceHeader invoice = new InvoiceHeader(newInvoiceNumber, newInvoiceDate, newInvoiceCustomerName);
+                    InvoiceHeader invoice = new InvoiceHeader(newInvoiceNumber, newInvoiceDate, newInvoiceCustomerName);
 
-            mainFrame.getInvoicesArray().add(invoice); // add the new invoice to the invoice array and table model
-            mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the table model
+                    mainFrame.getInvoicesArray().add(invoice); // add the new invoice to the invoice array and table model
+                    mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the table model
 
-            newInvoicePopup.setVisible(false);
-            newInvoicePopup.dispose(); // dispose the dialog to close the popup after clicking save button
-            newInvoicePopup = null;
+                    newInvoicePopup.setVisible(false);
+                    newInvoicePopup.dispose(); // dispose the dialog to close the popup after clicking save button
+                    newInvoicePopup = null;
+                } 
+                else 
+                {                    
+                    JOptionPane.showMessageDialog(mainFrame, "Customer name accept from 3 to 20 characters only.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(mainFrame, "Please Enter Customer Name", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            }
         } 
         catch (ParseException ex) 
         {
@@ -270,25 +284,43 @@ public class InvoicesController implements ActionListener, ListSelectionListener
         newItemPopup.setVisible(true);
     }
 
-    private void saveNewInvoiceItem() {
+    private void saveNewInvoiceItem() 
+    {
         // to make sure that the user is selecting an invoice.
-        String newItemName = newItemPopup.getNewItemNameTxt().getText();
-        double newItemPrice = Double.parseDouble(newItemPopup.getNewItemPriceTxt().getText());
-        int newItemCount = Integer.parseInt(newItemPopup.getNewItemCountTxt().getText());
+        String newItemName = newItemPopup.getNewItemNameText().getText();
+        double newItemPrice = Double.parseDouble(newItemPopup.getNewItemPriceText().getText());
+        int newItemCount = Integer.parseInt(newItemPopup.getNewItemCountText().getText());
 
         int selectedInvoiceNumber = mainFrame.getInvoicesTable().getSelectedRow();
 
         if (selectedInvoiceNumber != -1) 
         {
+            // Validation for empty count and prices to be added here...................................
+            
             InvoiceHeader invoiceNumber = mainFrame.getInvoicesArray().get(selectedInvoiceNumber);
+            
+//            if( !(newItemName.isEmpty()))
+//            {
+//                if( newItemName.length() <= 20 && newItemName.length()>= 3 /*&& newItemPrice <= 0 && newItemCount <= 1*/ ) //the commented code will be uncommented when make the price and count mandatory
+//                {
+                    InvoiceLine invLine = new InvoiceLine(invoiceNumber, newItemName, newItemPrice, newItemCount);
+                    invoiceNumber.getInvoiceItems().add(invLine);
 
-            InvoiceLine invLine = new InvoiceLine(invoiceNumber, newItemName, newItemPrice, newItemCount);
-            invoiceNumber.getInvoiceItems().add(invLine);
+                    LinesTable_TableModel itemTblModel = (LinesTable_TableModel) mainFrame.getItemsTable().getModel(); //casting
+                    itemTblModel.fireTableDataChanged(); //to update the table.
 
-            LinesTable_TableModel itemTblModel = (LinesTable_TableModel) mainFrame.getItemsTable().getModel(); //casting
-            itemTblModel.fireTableDataChanged(); //to update the table.
-
-            mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the invoice total
+                    mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the invoice total
+//                }
+//                else
+//                {
+//                    JOptionPane.showMessageDialog(mainFrame, "Item name accepts from 3 to 20 characters only. AND Price and count must be a real number",
+//                            "Validation Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//            else
+//            {
+//                JOptionPane.showMessageDialog(mainFrame, "Please Enter Customer Name", "Validation Error", JOptionPane.ERROR_MESSAGE);
+//            }
         }
         newItemPopup.setVisible(false);
         newItemPopup.dispose(); // dispose the dialog to close the popup after clicking save button

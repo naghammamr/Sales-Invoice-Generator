@@ -13,13 +13,14 @@ public class InvoiceDialogPopup extends JDialog {
 
     private final JLabel invoiceDateFieldLabel;
     private JTextField invoiceDateTxtField;
+    //private final JLabel invoiceDateFormatLabel;
 
     private final JButton saveInvoiceBtn;
     private final JButton cancelInvSavingBtn;
 
     public InvoiceDialogPopup(InvoiceFrame mainFrame) {
 
-        setLayout(new GridLayout(3, 2));
+        setLayout(new GridLayout(3, 3));
         setTitle("New Invoice");
         setLocation(350, 250);
         //setLocationRelativeTo(mainFrame);
@@ -29,6 +30,7 @@ public class InvoiceDialogPopup extends JDialog {
 
         invoiceDateFieldLabel = new JLabel("Invoice Date: ");
         invoiceDateTxtField = new JTextField(10); // DD-MM-YYYY
+        //invoiceDateFormatLabel = new JLabel("Date Format: DD-MM-YYYY ");
 
         saveInvoiceBtn = new JButton("Save");
         saveInvoiceBtn.setActionCommand("saveNewInvoice");
@@ -51,11 +53,11 @@ public class InvoiceDialogPopup extends JDialog {
         pack();
     }
 
-    public JTextField getCustomerNameTxtField() {
+    public JTextField getCustomerNameText() {
         return customerNameTxtField; // to use it in the controller to get the entered text in the text field.
     }
 
-    public JTextField getInvoiceDateTxtField() {
+    public JTextField getInvoiceDateText() {
         return invoiceDateTxtField; // to use it in the controller to get the entered text in the text field.
     }
 }

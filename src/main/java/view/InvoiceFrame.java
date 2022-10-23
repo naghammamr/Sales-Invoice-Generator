@@ -79,6 +79,9 @@ public class InvoiceFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
+        jPanelLeft.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        newInvoiceBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         newInvoiceBtn.setText("Create New Invoice");
         newInvoiceBtn.setToolTipText("Click after uploading the invoices");
         newInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +90,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
             }
         });
 
+        deleteInvoicesBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         deleteInvoicesBtn.setText("Delete Invoice");
         deleteInvoicesBtn.setToolTipText("Click after uploading the invoices");
 
@@ -101,6 +105,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(leftInvoicesTable);
 
         InvoicesTableHeader.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        InvoicesTableHeader.setForeground(new java.awt.Color(51, 51, 51));
         InvoicesTableHeader.setLabelFor(InvoicesTableHeader);
         InvoicesTableHeader.setText("Invoices Table");
 
@@ -121,12 +126,12 @@ public class InvoiceFrame extends javax.swing.JFrame {
                     .addGroup(jPanelLeftLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(InvoicesTableHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanelLeftLayout.setVerticalGroup(
             jPanelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLeftLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(InvoicesTableHeader)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,8 +176,10 @@ public class InvoiceFrame extends javax.swing.JFrame {
         totalLabel.setText("Invoice Total:");
 
         invoicesItemTableHeader.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        invoicesItemTableHeader.setForeground(new java.awt.Color(51, 51, 51));
         invoicesItemTableHeader.setText("Invoices Items");
 
+        saveInvoicesItemsBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveInvoicesItemsBtn.setText("Add New Item");
         saveInvoicesItemsBtn.setToolTipText("Click after selecting the invoice");
         saveInvoicesItemsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +188,7 @@ public class InvoiceFrame extends javax.swing.JFrame {
             }
         });
 
+        cancelInvoiceItemBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cancelInvoiceItemBtn.setText("Delete Item");
         cancelInvoiceItemBtn.setToolTipText("select item first");
         cancelInvoiceItemBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -239,8 +247,8 @@ public class InvoiceFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(invoiceDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(invoiceDateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                    .addComponent(invoiceDateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(customerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                     .addComponent(customerNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
