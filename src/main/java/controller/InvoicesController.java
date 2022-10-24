@@ -111,6 +111,7 @@ public class InvoicesController implements ActionListener, ListSelectionListener
 
                         InvoiceHeader invoice = new InvoiceHeader(invoiceNo, invoiceDate, customterName);
                         invoicesArray.add(invoice);
+                        System.out.println(invoice);
 
                     } 
                     catch (Exception ex) 
@@ -151,6 +152,8 @@ public class InvoicesController implements ActionListener, ListSelectionListener
 
                             InvoiceLine line = new InvoiceLine(itemInvoiceNumber, itemName, itemPrice, count);
                             itemInvoiceNumber.getInvoiceItems().add(line);
+                            
+                            System.out.println(line);
                         } 
                         catch (Exception ex) 
                         {
@@ -196,6 +199,8 @@ public class InvoicesController implements ActionListener, ListSelectionListener
             
             mainFrame.getItemsTable().setModel(linestblModel);
             linestblModel.fireTableDataChanged(); //update the table
+            
+            System.out.println(linestblModel);
         }
     }
 
@@ -229,6 +234,8 @@ public class InvoicesController implements ActionListener, ListSelectionListener
 
                         mainFrame.getInvoicesArray().add(invoice); // add the new invoice to the invoice array and table model
                         mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the table model
+                        
+                        System.out.println(invoice);
 
                         newInvoicePopup.setVisible(false);
                         newInvoicePopup.dispose(); // dispose the dialog to close the popup after clicking save button
@@ -318,6 +325,8 @@ public class InvoicesController implements ActionListener, ListSelectionListener
                         LinesTable_TableModel itemTblModel = (LinesTable_TableModel) mainFrame.getItemsTable().getModel(); //casting
                         itemTblModel.fireTableDataChanged(); //to update the table.
                         mainFrame.getInvoicesTblModel().fireTableDataChanged(); // to update the invoice total
+                        
+                        System.out.println(itemTblModel);
                         
                         newItemPopup.setVisible(false);
                         newItemPopup.dispose(); // dispose the dialog to close the popup after clicking save button

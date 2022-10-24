@@ -3,10 +3,7 @@ package model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nagham
- */
+
 public class InvoicesTable_TableModel extends AbstractTableModel {
 
     //array list of invoices (from the invoices frame)
